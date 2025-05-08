@@ -1,0 +1,24 @@
+---
+antora:
+  name: modules
+  dir: www
+  modules:
+    - name: "01-installation"
+      label: "Installation"
+      solveButton: true
+    - name: "02-create-blueprint"
+      label: "Create Blueprint"
+      solveButton: true
+    - name: "03-build-image"
+      label: "Build Image"
+      solveButton: true
+    - name: "04-inspect"
+      label: "Inspect"
+      solveButton: true
+    - name: "05-troubleshooting"
+      label: "Troubleshooting"
+      solveButton: true
+
+tabs:
+  - name: ">_ terminal"
+    url: /wetty

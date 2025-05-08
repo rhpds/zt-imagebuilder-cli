@@ -1,0 +1,9 @@
+---
+name: modules
+version: master
+
+asciidoc:
+  attributes:
+    lab_name: "Design and build virtual machine images using commandline tools [Image Builder]"
+    release-version: master
+    page-pagination: true
