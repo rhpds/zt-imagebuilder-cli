@@ -3,10 +3,6 @@
 # Create an output file
 touch /root/post-run.log
 
-# register host
-subscription-manager config --rhsm.manage_repos=1
-subscription-manager register --org=12451665 --activationkey=${ACTIVATION_KEY} --force
-
 # Create a done file to signal we have finished
 touch /root/post-run.log.done
 
