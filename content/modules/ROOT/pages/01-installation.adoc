@@ -8,7 +8,7 @@ provides the back-end service used to produce the virtual machine
 images.
 
 ....
-dnf install -y composer-cli osbuild-composer
+sudo dnf install -y composer-cli osbuild-composer
 ....
 
 Now that the software has been successfully installed on the system, you
@@ -17,7 +17,7 @@ also need to activate the `+osbuild-composer+` service so that the
 responsible for queuing and creating the machine images.
 
 ....
-systemctl enable --now osbuild-composer.socket
+sudo systemctl enable --now osbuild-composer.socket
 ....
 
 Now that the service is accessible, you are ready to start working with
