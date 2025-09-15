@@ -21,4 +21,4 @@ antora:
 
 tabs:
   - name: ">_ terminal"
-    url: /wetty
+    url: /wetty_host/ssh/root

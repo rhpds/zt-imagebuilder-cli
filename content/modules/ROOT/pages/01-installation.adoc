@@ -17,7 +17,7 @@ also need to activate the `+osbuild-composer+` service so that the
 responsible for queuing and creating the machine images.
 
 ....
-sudo systemctl enable --now osbuild-composer.socket
+systemctl enable --now osbuild-composer.socket
 ....
 
 Now that the service is accessible, you are ready to start working with
