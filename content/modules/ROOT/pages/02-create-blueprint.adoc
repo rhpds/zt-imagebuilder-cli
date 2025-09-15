@@ -36,7 +36,7 @@ Enterprise Linux, so you will need to add a *[[packages]]* section to
 the node-app-server.toml file adding `+nodejs+` to the build.
 
 .Command
-[source,bash,subs="+macros,+attributes",role=execute]
+[source,bash,role=execute]
 ----
 printf '\n[[packages]]\nname = "nodejs"\nversion = "*"' | tee -a node-app-server.toml
 ----
@@ -47,7 +47,7 @@ node-app-server.toml file.
 Similarly, add the `+nginx+` package to the blueprint file.
 
 .Command
-[source,bash,subs="+macros,+attributes",role=execute]
+[source,bash,role=execute]
 ----
 printf '\n[[packages]]\nname = "nginx"\nversion = "*"' | tee -a node-app-server.toml
 ----
