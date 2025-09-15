@@ -56,14 +56,14 @@ Find the virtual machine partition so that we can mount it -
 fdisk /dev/nbd0 -l
 ----
 
-The partition of the disk is `+/dev/nbd0p4+`
+The partition of the disk is `+/dev/nbd0p3+`
 
 Mount the partition to some mountpoint (in this case `+/mnt+`) -
 
 .Command
 [source,bash,subs="+macros,+attributes",role=execute]
 ----
-mount /dev/nbd0p4 /mnt
+mount /dev/nbd0p3 /mnt
 ----
 
 Temporarily change the root directory of the bash shell to be the
