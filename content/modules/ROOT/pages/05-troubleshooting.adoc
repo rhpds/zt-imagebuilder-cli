@@ -1,9 +1,11 @@
 [[troubleshooting-a-compose-1]]
 == Troubleshooting a compose
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli compose log $(composer-cli compose status | cut -f1 -d" " | tail -1)
-....
+----
 
 Throughout the lab, you have seen the UUID of the compose transaction
 used in command output and as an argument for working with individual
@@ -13,18 +15,22 @@ UUID to store data about this, specific, machine image build.
 To look at the data associated with the machine image build you
 completed in the lab -
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli compose results $(composer-cli compose status | cut -f1 -d" " | tail -1)
-....
+----
 
 The output is a .tar that includes the logs, status, and resulting
 image.
 
 To view the contents of the tar file -
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 tar -tvf $(composer-cli compose status | cut -f1 -d" " | tail -1).tar
-....
+----
 
 You will be able to use these logs to isolate problems with a build, add
 fixes into your compose file, and reinitiate your build.

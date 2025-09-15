@@ -6,16 +6,20 @@ not work if the machine image is not yet completed. The below command is
 a small `+until+` shell script that will run until the completed machine
 image is created.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 until $(composer-cli compose status | tail -1 | grep FINISHED &>/dev/null); do echo "Compose not finished ... waiting 10 seconds"; sleep 10; done; echo "COMPOSE FINISHED"
-....
+----
 
 Now that the machine image compose is finished, download the completed
 machine image into your current directory.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli compose image $(composer-cli compose status | tail -1 | cut -f1 -d" ")
-....
+----
 
 The above command takes the UUID of the compose as an argument. We
 embedded an additional call to `+composer-cli compose status+` along
@@ -29,37 +33,47 @@ the qcow2 image as a network block device (NBD).
 
 Load the NBD kernel module using the `+modprobe+` utility -
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 modprobe nbd
-....
+----
 
 Attach a qcow2 virtual image file that was downloaded into the current
 directory -
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 qemu-nbd --connect=/dev/nbd0 $(composer-cli compose status | cut -f1 -d" " | tail -1)-disk.qcow2
-....
+----
 
 Find the virtual machine partition so that we can mount it -
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 fdisk /dev/nbd0 -l
-....
+----
 
 The partition of the disk is `+/dev/nbd0p4+`
 
 Mount the partition to some mountpoint (in this case `+/mnt+`) -
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 mount /dev/nbd0p4 /mnt
-....
+----
 
 Temporarily change the root directory of the bash shell to be the
 directory holding the contents of your machine image.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 chroot /mnt
-....
+----
 
 ____
 *Note:* You may see the following output:
@@ -77,9 +91,11 @@ image and use the machine image’s files and content. Use an `+rpm+`
 query to confirm that `+nodejs+` and `+nginx+` are included in the
 machine image.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 rpm -q nodejs nginx
-....
+----
 
 From the above output, you can verify that both the `+nodejs+` and
 `+nginx+` packages were installed into this machine image.
@@ -87,24 +103,32 @@ From the above output, you can verify that both the `+nodejs+` and
 Now that the verification is complete, you can exit the chroot’ed bash
 shell.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 exit
-....
+----
 
 Unmount the verified machine disk image from your filesystem.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 umount /mnt
-....
+----
 
 Disconnect the network block device
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 qemu-nbd --disconnect /dev/nbd0
-....
+----
 
 Remove the NBD kernel module
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 rmmod nbd
-....
+----

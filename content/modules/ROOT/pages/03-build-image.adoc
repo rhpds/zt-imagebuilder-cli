@@ -18,9 +18,11 @@ including:
 |vmdk |Virtual Machine disk
 |===
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli compose start node-app-server qcow2
-....
+----
 
 The compose, or build of the image, is tracked using a UUID, in the
 above example output, 00403772-ff12-43d4-b09a-bddf28f20709. Your UUID
@@ -30,9 +32,11 @@ Composes are queued and completed in the order that they were received.
 You can look at the status of the queue using
 `+composer-cli compose status+`.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli compose status
-....
+----
 
 The status will display all queued (WAITING), running (RUNNING), and
 completed (FINISHED) composes.
