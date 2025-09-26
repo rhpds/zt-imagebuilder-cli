@@ -3,9 +3,11 @@
 
 First, look at what blueprints are available on the system.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli blueprints list
-....
+----
 
 This system has no existing blueprints. So, let us go ahead and create a
 blueprint.
@@ -17,9 +19,11 @@ our machine image.
 To save some time look at the *node-app-server.toml* file that has
 already been pre-created using a tool like `+cat+` or `+less+`.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 cat node-app-server.toml
-....
+----
 
 The name of the blueprint is called *node-app-server*. It is recommended
 that you also include a description so that others using this blueprint
@@ -31,32 +35,40 @@ file does not have any packages but we will add the `+nodejs+` and
 Enterprise Linux, so you will need to add a *[[packages]]* section to
 the node-app-server.toml file adding `+nodejs+` to the build.
 
-....
-printf '\n[[packages]]\nname = "nodejs"\nversion = "*"' >> node-app-server.toml
-....
+.Command
+[source,bash,role=execute]
+----
+printf '\n[[packages]]\nname = "nodejs"\nversion = "*"' | tee -a node-app-server.toml
+----
 
 The `+printf+` command appends the following formatted stanza to the
 node-app-server.toml file.
 
 Similarly, add the `+nginx+` package to the blueprint file.
 
-....
-printf '\n[[packages]]\nname = "nginx"\nversion = "*"' >> node-app-server.toml
-....
+.Command
+[source,bash,role=execute]
+----
+printf '\n[[packages]]\nname = "nginx"\nversion = "*"' | tee -a node-app-server.toml
+----
 
 In order to create the blueprint from the local TOML file, we will use
 the `+blueprints push+` cli option.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli blueprints push node-app-server.toml
-....
+----
 
 To verify that your update has been made, review the log of changes made
 to the node-app-server blueprint.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli blueprints changes node-app-server
-....
+----
 
 ____
 *Note:* in the above command output, your date and time will be
@@ -67,9 +79,11 @@ You can also review the contents of the node-app-server blueprint to
 verify that the `+nodejs+` and `+nginx+` modules are reflected in the
 active version of the blueprint instructions.
 
-....
+.Command
+[source,bash,subs="+macros,+attributes",role=execute]
+----
 composer-cli blueprints show node-app-server
-....
+----
 
 In the above output, you can see that the `+nodejs+` and `+nginx+`
 packages are now included in the node-app-server blueprint definition.
